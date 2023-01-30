@@ -16,6 +16,8 @@ import SingleSnack from './components/snacks/SingleSnack';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUser, getUserAdmin } from './features/users/userSlice';
 import Confrim from './components/orders/Confirm';
+import OrderHistory from './components/orders/OrderHistory';
+import EditOrder from './components/orders/EditOrder';
 
 function App() {
   const user = useSelector(state => state.user)
@@ -47,6 +49,8 @@ function App() {
           <Route exact path="/snacks" element={<Snacks />} />
           <Route exact path="/cart" element={<CartList />} />
           <Route exact path="/orders/confirm" element={<Confrim />} />
+          <Route exact path="/orders/history" element={<OrderHistory />} />
+          <Route exact path="/orders/:id/edit" element={<EditOrder />} />
           <Route exact path="/snacks/:id/:name" element={<SingleSnack />} />
           <Route exact path="/admin" element={<Admin />} />
           <Route exact path="/admin/orders" element={<Orders />} />

@@ -1,5 +1,5 @@
 class OrderSerializer < ActiveModel::Serializer
-  attributes :quantity, :updated_at, :snack
+  attributes :id, :quantity, :updated_at, :snack
   has_one :user
   has_one :snack
 

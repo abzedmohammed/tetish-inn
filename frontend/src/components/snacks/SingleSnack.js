@@ -9,9 +9,6 @@ export default function SingleSnack(){
     const snack = snacks.singleSnack
     const dispatch = useDispatch()
 
-    console.log(id);
-
-
     useEffect(() => {
         dispatch(fetchSnackById(id))
     }, [])

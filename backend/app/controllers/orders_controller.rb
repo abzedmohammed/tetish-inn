@@ -41,6 +41,10 @@ class OrdersController < ApplicationController
         end
     end
 
+    def user_orders
+        render json: Order.select { | item | item[:user_id] == params[:user_id] }
+    end
+
 
     private
 

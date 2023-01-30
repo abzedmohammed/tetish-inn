@@ -39,7 +39,6 @@ const snackSlice = createSlice({
 
         removeFromCart: (state, action) => {
             state.cart = state.cart.filter(item => item.id !== action.payload)
-            console.log(action.payload);
             return state
         },
 

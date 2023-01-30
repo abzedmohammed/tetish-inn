@@ -13,7 +13,7 @@ class AccountsController < ApplicationController
     end
 
     def show
-       account = Account.find(params[:id]) 
+       account = Account.find_by(user_id: params[:id]) 
        if account 
            render json: account, status: :ok
         else
@@ -22,7 +22,7 @@ class AccountsController < ApplicationController
     end
 
     def update
-        account = Account.find(params[:id])
+        account = Account.find_by(user_id: params[:id]) 
         if account
             account.update!(account_params)
             render json: account, status: :accepted

@@ -6,24 +6,31 @@ import { useSelector } from "react-redux";
 const initialState ={
     loading: false,
     orderSuccess: false,
+    payed: false,
     error: '',
     orderDeleted: false,
+    userOrders: [],
+    total: null,
 }
 
 export const makeOrder = createAsyncThunk('orderSlice/makeOrder', data => {
-    return axios.post("http//:localhost:3000/orders", data).then(res => res.data)
+    return axios.post("http://localhost:3000/orders", data).then(res => res.data)
 })
 
-// export const getOrders = createAsyncThunk('orderSlice/getOrders', () => {
-//     return axios.get("http//:localhost:3000/orders").then(res => res.data)
-// })
+export const getUserOrders = createAsyncThunk('orderSlice/getUserOrders', data => {
+    return axios.post("http://localhost:3000/my-orders", data).then(res => res.data)
+})
 
-export const editOrder = createAsyncThunk('orderSlice/editOrder', (id, data) => {
-    return axios.patch(`http//:localhost:3000/orders/${id}`, data).then(res => res.data)
+export const editOrder = createAsyncThunk('orderSlice/editOrder', (data) => {
+    return axios.patch(`http://localhost:3000/orders/${data.id}`, data).then(res => res.data)
+})
+
+export const getSingleOrder = createAsyncThunk('orderSlice/getSingleOrder', (id) => {
+    return axios.get(`http://localhost:3000/orders/${id}`).then(res => res.data)
 })
 
 export const deleteOrder = createAsyncThunk('orderSlice/deleteOrder', id => {
-    return axios.delete(`http//:localhost:3000/orders/${id}`).then(res => res.data)
+    return axios.delete(`http://localhost:3000/orders/${id}`).then(res => res.data)
 })
 
 const orderSlice = createSlice({
@@ -32,6 +39,17 @@ const orderSlice = createSlice({
     reducers: {
         reset: state => {
             state.orderSuccess = false;
+        },
+        incrementQuantity: (state, action) => {
+            let index = state.userOrders.find(item => item.id === action.payload.id)
+            index.quantity += 1
+            
+        },
+        decrementQuantity: (state, action) => {
+            let index = state.userOrders.find(item => item.id === action.payload.id)
+            if(index.quantity === 1) return state
+            index.quantity -= 1
+            
         }
     },
 
@@ -42,12 +60,14 @@ const orderSlice = createSlice({
         builder.addCase(makeOrder.fulfilled, state => {
             state.loading = false
             state.orderSuccess = true
+            state.payed = true
             state.error = ''
         })
         builder.addCase(makeOrder.rejected, (state, action) => {
             state.loading = false
             state.orderSuccess = false
-            state.error = action.payload.message
+            state.payed = false
+            state.error = action.error.message
         })
 
 
@@ -58,25 +78,32 @@ const orderSlice = createSlice({
             state.loading = false
             state.orderSuccess = true
             state.error = ''
+            state.payed = true
         })
         builder.addCase(editOrder.rejected, (state, action) => {
             state.loading = false
             state.orderSuccess = false
             state.error = action.payload.message
+            state.payed = false
         })
 
 
-        // builder.addCase(getOrders.fulfilled, state => {
-        //     return state
-        // })
+        builder.addCase(getUserOrders.fulfilled, (state, action) => {
+            state.userOrders = action.payload
+        })
 
 
         builder.addCase(deleteOrder.fulfilled, state => {
             state.orderDeleted = true
+        })
+
+
+        builder.addCase(getSingleOrder.fulfilled, (state, action) => {
+            state.total = action.payload.quantity * action.payload.snack.price
         })
     }
 })
 
 
 export default orderSlice.reducer
-export const { reset } = orderSlice.actions
+export const { reset, incrementQuantity, decrementQuantity } = orderSlice.actions
