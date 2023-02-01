@@ -33,8 +33,8 @@ export default function Home() {
 	return (
 		<>
 			<div className='container mx-auto mt-16'>
-				<div className='hero h-auto bg-base-200 p-10 
-				bg-hero-image bg-contain bg-no-repeat bg-blend-overlay'>
+				<div className='hero h-auto bg-base-200 p-1 md:p-10 
+				bg-none md:bg-hero-image md:bg-contain md:bg-no-repeat md:bg-blend-overlay'>
 					<div className='hero-content flex-col lg:flex-row-reverse'>
 						<div className='text-center lg:text-left text-amber-800'>
 							<h1 className='text-6xl font-bold'>Your Home For Snacks!</h1>

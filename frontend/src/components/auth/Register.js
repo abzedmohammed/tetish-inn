@@ -58,8 +58,8 @@ export default function Register() {
 			<div className='container mx-auto flex items-center justify-center'>
 				<div className='card flex-shrink-0 w-full shadow-md shadow-amber-200 bg-base-100 p-8 mt-10'>
 					<form onSubmit={handleSubmit(onSubmit)}>
-						<h1 className='mb-5 text-4xl font-bold'>
-							<span className='border-b-4 border-teal-400'>Hello</span> Esteemed
+						<h1 className='mb-5 text-4xl font-bold text-amber-700'>
+							<span className='border-b-4 border-amber-400 text-amber-900'>Hello</span> Esteemed
 							Cutomer
 						</h1>
 
@@ -82,7 +82,7 @@ export default function Register() {
 										{...register('username')}
 										type='text'
 										id='username'
-										className='input border-2 focus:outline-none border-amber-400 w-5/6 focus:ring-amber-700 focus:border-amber-500'
+										className='input border-2 focus:outline-none border-amber-400 focus:ring-amber-700 focus:border-amber-500 w-full md:w-5/6'
 										placeholder='john_doe'
 										
 									/>
@@ -99,7 +99,7 @@ export default function Register() {
 										{...register('email')}
 										type='email'
 										id='email'
-										className='input border-2 focus:outline-none border-amber-400 w-5/6 focus:ring-amber-700 focus:border-amber-500'
+										className='input border-2 focus:outline-none border-amber-400 focus:ring-amber-700 focus:border-amber-500 w-full md:w-5/6'
 										placeholder='john_doe@user.com'
 										
 									/>
@@ -114,7 +114,7 @@ export default function Register() {
 									</label>
 									<input onChange={handleChange}
 										type='file' name='avatar' 
-										className='file-input file-input-bordered border-2 file-input-warning w-5/6 max-w-xs'
+										className='file-input file-input-bordered border-2 file-input-warning max-w-xs w-full md:w-5/6'
 									/>
 								</div>
 							</div>
@@ -131,7 +131,7 @@ export default function Register() {
 										type='password'
 										{...register('password')}
 										id='password'
-										className='input border-2 focus:outline-none border-amber-400 w-5/6 focus:ring-amber-700 focus:border-amber-500'
+										className='input border-2 focus:outline-none border-amber-400 focus:ring-amber-700 focus:border-amber-500 w-full md:w-5/6'
 										
 									/>
 								</div>
@@ -147,7 +147,7 @@ export default function Register() {
 										type='password'
 										{...register('password_confirmation')}
 										id='password_confirmation'
-										className='input border-2 focus:outline-none border-amber-400 w-5/6 focus:ring-amber-700 focus:border-amber-500'
+										className='input border-2 focus:outline-none border-amber-400 focus:ring-amber-700 focus:border-amber-500 w-full md:w-5/6'
 										
 									/>
 								</div>
@@ -155,7 +155,7 @@ export default function Register() {
 						</div>
 
 						<div className='form-control mt-3'>
-							<button type='submit' className='btn bg-amber-500 hover:bg-amber-700 w-80'>
+							<button type='submit' className='btn bg-amber-500 hover:bg-amber-700 md:w-80 w-full'>
 								{user.loading ? (
 									<div role='status'>
 										<svg

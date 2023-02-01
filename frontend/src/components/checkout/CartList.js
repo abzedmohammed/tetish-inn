@@ -25,7 +25,7 @@ export default function CartList(){
                         }
                 </div>
 
-                <div className="flex flex-row justify-between items-center border-spacing-2 bg-amber-200 p-4 rounded-lg w-1/3">
+                <div className="flex flex-row justify-between items-center border-spacing-2 bg-amber-200 p-4 rounded-lg md:w-1/3">
                     <h2 className="text-xl text-amber-900 font-medium">TOTAL</h2>
                     <h2 className="text-xl text-amber-900 font-bold">KES {snacks.totalPrice}</h2>
                 </div>
@@ -34,7 +34,7 @@ export default function CartList(){
                 {
                     snacks.cart.length >= 1 ?
                     <div className="mt-2">
-                        <Link className="btn bg-amber-700 text-white btn-sm w-1/3" type="button" to="/orders/confirm">Proceed to checkout</Link>
+                        <Link className="btn bg-amber-700 text-white btn-sm w-full md:w-1/3" type="button" to="/orders/confirm">Proceed to checkout</Link>
                     </div>
                     :
                     null

@@ -69,12 +69,13 @@ export default function Dashboard() {
 
 	return (
 		<>
-			<div className='container mx-auto mb-14'>
-				<div className='card p-24 border-b-8 border-r-4 shadow-md shadow-amber-500 border-amber-800'>
+			<div className='p-5 md:container md:mx-auto mb-14'>
+				<div className='card p-5 md:p-24 border-b-8 border-r-4 shadow-md shadow-amber-500 border-amber-800'>
 					<h1 className='text-8xl text-amber-800'>
 						<span className='uppercase '>
-							{user.user.username}'<span className='lowercase'>s</span>{' '}
-							Dashboard
+							<span className='md:hidden block capitalize'>Hi...</span>
+							{user.user.username}<span className='hidden md:lowercase md:inline'>'s</span>{' '}
+							<span className='hidden md:inline'>Dashboard</span>
 						</span>
 					</h1>
 				</div>
@@ -84,7 +85,7 @@ export default function Dashboard() {
 						Account Summary
 					</h2>
 
-					<div className='grid grid-cols-2 gap-4'>
+					<div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
 						<div className='stats text-center'>
 							<div className='stat'>
 								<div className='stat-title text-2xl text-amber-900 font-bold'>
@@ -137,7 +138,7 @@ export default function Dashboard() {
 							Order History
 						</h5>
 						<div className='border-2 border-amber-500 p-3 rounded-2xl w-full'>
-							<ol className='flex flex-row justify-around items-center border-l border-gray-200 dark:border-gray-700'>
+							<ol className='flex flex-col md:flex-row md:justify-around items-center border-l border-gray-200 dark:border-gray-700'>
 								{sortOrders ? (
 									sortOrders.slice(0, 3).map((order) => {
 										return (

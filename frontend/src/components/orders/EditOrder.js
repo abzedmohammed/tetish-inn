@@ -100,12 +100,12 @@ export default function EditOrder(){
                     {
                         !message && !order.error &&
 
-                    <div className="flex flex-row">
-                    <div className="border-4 border-amber-600 rounded-lg w-9/12 h-96">
+                    <div className="flex flex-col md:flex-row">
+                    <div className="border-4 border-amber-600 rounded-lg w-full md:w-9/12 h-96">
                         <img className="w-full h-[376px] object-fill" src={recentOrder.snack.image} alt="product" />
                     </div>
 
-                    <div className="mx-10 text-left">
+                    <div className="mx-10 text-left xs:mt-3">
                         <h1 className="text-2xl text-amber-700 font-semibold mb-4 border-b-4 border-amber-700">{recentOrder.snack.name}</h1>
                         <h2 className="text-3xl text-amber-800 font-bold mb-4">KES {editedPrice}</h2>
 

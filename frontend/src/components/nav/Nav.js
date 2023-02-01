@@ -28,7 +28,7 @@ export default function Nav(){
                 </div>
                 <Link to="/" className="flex flex-row items-center text-xl">
                     <img src={logo} className="w-24 h-24 rounded-full" alt="logo" />
-                    <span className="text-amber-800 text-3xl font-extrabold border-b-4 border-amber-600">TETISH-INN</span>
+                    <span className="text-amber-800 text-3xl font-extrabold border-b-4 border-amber-600 hidden md:block">TETISH-INN</span>
                 </Link>
             </div>
             <div className="navbar-center hidden lg:flex">
@@ -66,9 +66,9 @@ export default function Nav(){
                             </div>
                         </div>
                         </div>
-                        <div className="dropdown dropdown-end">
+                        <div className="dropdown dropdown-end mx-2">
                         <label tabIndex={0} className="btn btn-ghost btn-circle avatar hover:bg-amber-200">
-                            <div className="w-10 rounded-full">
+                            <div className="w-12 rounded-full">
                             <img src={user.user.avatar} alt="avatar" />
                             </div>
                         </label>
