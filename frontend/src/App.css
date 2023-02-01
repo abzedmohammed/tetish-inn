@@ -1,12 +1,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-
-.hero{
-    background-image: url(./assets/snack.jpg);
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-blend-mode: overlay;
-
-}

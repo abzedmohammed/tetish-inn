@@ -4,36 +4,53 @@ import * as yup from 'yup';
 import { Link, Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { createAccount, registerUser } from '../../features/users/userSlice';
+import { useState } from 'react';
 
 const schema = yup
 	.object({
-		username: yup.string().required(),
-		email: yup.string().required(),
-		avatar: yup.string().required(),
-		password: yup.string().required(),
-		confirm_password: yup.string().required(),
+		// username: yup.string().required(),
+		// email: yup.string().required(),
+		// avatar: yup.string().required(),
+		// password: yup.string().required(),
+		// confirm_password: yup.string().required(),
 	})
 	.required();
 
 export default function Register() {
-	const user = useSelector((state) => state.user);
-	const dispatch = useDispatch();
+	const [image, setImage] = useState({});
+
+	const user = useSelector(state => state.user)
+
+	const dispatch = useDispatch()
 
 	const { register, handleSubmit } = useForm({
-		resolver: yupResolver(schema),
-	});
-	const onSubmit = (data) => signup(data);
+        resolver: yupResolver(schema)
+    });
+    const onSubmit = (userData) => registerAccount(userData);
 
-	async function signup(data) {
-		const user = await dispatch(registerUser(data));
-		dispatch(createAccount({
-			user_id: user.payload.id,
+	const handleChange = e => {
+		e.persist();
+		setImage(e.target.files[0]);
+	};
+
+	const registerAccount = async userData => {
+		const data = new FormData();
+		data.append('avatar', image);
+		data.append('username', userData.username);
+		data.append('email', userData.email);
+		data.append('password', userData.password);
+		data.append('password_confirmation', userData.password_confirmation);
+
+		const userInfo = await dispatch(registerUser(data))
+
+		await dispatch(createAccount({
+			user_id: userInfo.payload.id,
 			amount: 1500
 		}))
-	}
+	};
 
 	if (user.isLoggedIn) {
-		return <Navigate replace={true} to='/dashboard' />;
+		return <Navigate replace={true} to="/dashboard" />
 	}
 
 	return (
@@ -67,7 +84,7 @@ export default function Register() {
 										id='username'
 										className='input border-2 focus:outline-none border-amber-400 w-5/6 focus:ring-amber-700 focus:border-amber-500'
 										placeholder='john_doe'
-										required
+										
 									/>
 								</div>
 
@@ -84,7 +101,7 @@ export default function Register() {
 										id='email'
 										className='input border-2 focus:outline-none border-amber-400 w-5/6 focus:ring-amber-700 focus:border-amber-500'
 										placeholder='john_doe@user.com'
-										required
+										
 									/>
 								</div>
 
@@ -95,9 +112,8 @@ export default function Register() {
 									>
 										Upload profile image
 									</label>
-									<input
-										{...register('avatar')}
-										type='file'
+									<input onChange={handleChange}
+										type='file' name='avatar' 
 										className='file-input file-input-bordered border-2 file-input-warning w-5/6 max-w-xs'
 									/>
 								</div>
@@ -116,30 +132,30 @@ export default function Register() {
 										{...register('password')}
 										id='password'
 										className='input border-2 focus:outline-none border-amber-400 w-5/6 focus:ring-amber-700 focus:border-amber-500'
-										required
+										
 									/>
 								</div>
 
 								<div className='mb-6'>
 									<label
-										htmlFor='confirm_password'
+										htmlFor='password_confirmation'
 										className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
 									>
 										Confirm password
 									</label>
 									<input
 										type='password'
-										{...register('confirm_password')}
-										id='confirm_password'
+										{...register('password_confirmation')}
+										id='password_confirmation'
 										className='input border-2 focus:outline-none border-amber-400 w-5/6 focus:ring-amber-700 focus:border-amber-500'
-										required
+										
 									/>
 								</div>
 							</div>
 						</div>
 
 						<div className='form-control mt-3'>
-							<button className='btn bg-amber-500 hover:bg-amber-700 w-80'>
+							<button type='submit' className='btn bg-amber-500 hover:bg-amber-700 w-80'>
 								{user.loading ? (
 									<div role='status'>
 										<svg
@@ -165,6 +181,7 @@ export default function Register() {
 								)}
 							</button>
 						</div>
+
 
 						<label className='label'>
 							<Link

@@ -6,7 +6,11 @@ module.exports = {
     "./node_modules/flowbite/**/*.js"
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'hero-image': "url('./assets/snack.jpg')",
+      }
+    },
   },
   plugins: [
     require("daisyui"),

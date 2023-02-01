@@ -65,7 +65,7 @@ const userSlice = createSlice({
             state.loading = false
             state.user = {}
             state.isLoggedIn = false
-            state.error = action.payload.error
+            state.error = action.error.message
         })
 
 
@@ -83,7 +83,7 @@ const userSlice = createSlice({
             state.loading = false
             state.user = {}
             state.isLoggedIn = false
-            state.error = action.payload.error
+            state.error = action.error.message
         })
 
 
@@ -91,7 +91,6 @@ const userSlice = createSlice({
             state.loading = true
         })
         builder.addCase(registerUser.fulfilled, (state, action) => {
-            state.loading = true
             state.isLoggedIn = false
             state.error = ''
         })
@@ -99,7 +98,7 @@ const userSlice = createSlice({
             state.loading = false
             state.user = {}
             state.isLoggedIn = false
-            state.error = action.payload.message
+            state.error = action.error.message
         })
 
 
@@ -119,12 +118,21 @@ const userSlice = createSlice({
         })
 
 
+        builder.addCase(createAccount.pending, state => {
+            state.loading = true
+        })
         builder.addCase(createAccount.fulfilled, (state, action) => {
             state.loading = false
             state.isLoggedIn = true
             sessionStorage.setItem('user_id', JSON.stringify(action.payload.user.id))
             state.user = action.payload.user
             window.location.reload()
+        })
+
+        builder.addCase(createAccount.rejected, (state, action) => {
+            state.loading = false
+            state.isLoggedIn = false
+            state.error = action.error.message
         })
 
     }

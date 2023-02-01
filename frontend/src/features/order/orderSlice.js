@@ -83,7 +83,7 @@ const orderSlice = createSlice({
         builder.addCase(editOrder.rejected, (state, action) => {
             state.loading = false
             state.orderSuccess = false
-            state.error = action.payload.message
+            state.error = action.error.message
             state.payed = false
         })
 

@@ -18,6 +18,7 @@ import { getUser, getUserAdmin } from './features/users/userSlice';
 import Confrim from './components/orders/Confirm';
 import OrderHistory from './components/orders/OrderHistory';
 import EditOrder from './components/orders/EditOrder';
+import ImageUploadForm from './components/Avatar';
 
 function App() {
   const user = useSelector(state => state.user)
@@ -37,6 +38,7 @@ function App() {
       <Route exact path="/snacks" element={<Snacks />} />
       <Route exact path="/login" element={<Home />} />
       <Route exact path="/admin/login" element={<AdminLogin />} />
+      <Route exact path="/avatar" element={<ImageUploadForm />} />
       <Route exact path="/register" element={<Register />} />
       <Route path='*' element={<Navigate to="/" />}/>
     </Routes>

@@ -4,10 +4,19 @@ class UsersController < ApplicationController
     end
 
     def create
-        user = User.create!(user_params)
+        photo = Cloudinary::Uploader.upload(params[:avatar], :folder => '/tetish-inn/')
+        user = User.create!(
+            username: params[:username],
+            email: params[:email],
+            password: params[:password],
+            password_confirmation: params[:password_confirmation],
+            avatar: photo['url']
+        )
+
         if user.valid?
             render json: user, status: :created
         else
+            Cloudinary::uploader.destroy(photo['public_id'])
             render json: user.errors, status: :unprocessable_entity        
         end
     end
@@ -44,9 +53,19 @@ class UsersController < ApplicationController
 
     private
 
-    def user_params
-        params.permit(:username, :password, :email, :password_confirmation, :avatar)
-    end
+    # def create
+    #     result = Cloudinary::Uploader.upload(params[:image])
+    #    photo = Photo.create(user_id: current_user.id, image:   result['url'])
+    #       if photo.save
+    #          render json: photo
+    #       else
+    #          render json: photo.errors
+    #       end
+    #  end
+
+    # def user_params
+    #     params.permit(:username, :password, :email, :password_confirmation, :avatar)
+    # end
 
     def per_page
         @per_page ||= params[:per_page] || 10

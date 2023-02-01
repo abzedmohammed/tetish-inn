@@ -1,13 +1,21 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
+const cartItems = JSON.parse(localStorage.getItem('cart')) || []
+const total = localStorage.getItem('total') || 0
+
+
+const manipulateCart = (item) => {
+    localStorage.setItem('cart', JSON.stringify(item))
+}
+
 const initialState = {
   loading: false,
   snacks: [],
   singleSnack: {},
   error: '',
-  cart: [],
-  totalPrice: 0,
+  cart: cartItems,
+  totalPrice: total,
 }
 
 export const fetchSnacks = createAsyncThunk('snacks/fetchSnacks', () => {
@@ -33,12 +41,15 @@ const snackSlice = createSlice({
             if (state.cart.find(item => action.payload.id === item.id)) return state
             let newCartItem = {...action.payload, quantity: 1, subtotal: action.payload.price}
             state.cart.push(newCartItem)
+            // setItemsToCart(newCartItem)
+            manipulateCart(state.cart)
 
             return state
         },
 
         removeFromCart: (state, action) => {
             state.cart = state.cart.filter(item => item.id !== action.payload)
+            manipulateCart(state.cart)
             return state
         },
 
@@ -46,6 +57,7 @@ const snackSlice = createSlice({
             let index = state.cart.findIndex(item => item.id === action.payload)
             state.cart[index].quantity += 1
             state.cart[index].subtotal +=  state.cart[index].price
+            manipulateCart(state.cart)
         },
 
         decrementItem: (state, action) => {
@@ -53,17 +65,22 @@ const snackSlice = createSlice({
             if (state.cart[index].quantity === 1) return state
             state.cart[index].quantity -= 1 
             state.cart[index].subtotal -=  state.cart[index].price
+            manipulateCart(state.cart)
         },
 
         getTotal: (state) => {
             state.totalPrice = state.cart.reduce((acc, item) => {
-              return acc + item.price * item.quantity
+              let average = acc + item.price * item.quantity
+            //   setTotalToCart(average)
+            localStorage.setItem('total', JSON.stringify(average))
+              return average
             }, 0)
           },
 
         emptyCart: state => {
             state.cart = []
             state.totalPrice = 0
+            localStorage.clear()
         },
     },
     extraReducers: builder => {
