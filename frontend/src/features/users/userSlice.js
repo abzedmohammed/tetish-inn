@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+const url = process.env.REACT_APP_TETISH_INN_BACKEND_URL
+
 const initialState = {
     user: {},
     loading: false,
@@ -9,32 +11,32 @@ const initialState = {
 }
 
 export const loginAdminUser = createAsyncThunk('userSlice/loginAdminUser', data => {
-    return axios.post("http://localhost:3000/login/admin", data)
+    return axios.post(`${url}/login/admin`, data)
         .then(res => res.data)
 })
 
 export const loginUser = createAsyncThunk('userSlice/loginUser', data => {
-    return axios.post("http://localhost:3000/login", data)
+    return axios.post(`${url}/login`, data)
         .then(res => res.data)
 })
 
 export const registerUser = createAsyncThunk('userSlice/registerUser', data => {
-    return axios.post("http://localhost:3000/users", data)
+    return axios.post(`${url}/users`, data)
         .then(res => res.data)
 })
 
 export const getUser = createAsyncThunk('userSlice/getUser', user_id => {
-    return axios.get(`http://localhost:3000/users/${user_id}`)
+    return axios.get(`${url}/users/${user_id}`)
         .then(res => res.data)
 })
 
 export const getUserAdmin = createAsyncThunk('userSlice/getUserAdmin', id => {
-    return axios.get(`http://localhost:3000/admins/${id}`)
+    return axios.get(`${url}/admins/${id}`)
         .then(res => res.data)
 })
 
 export const createAccount = createAsyncThunk('userSlice/createAccount', data => {
-    return axios.post("http://localhost:3000/accounts", data)
+    return axios.post(`${url}/accounts`, data)
         .then(res => res.data)
 })
 

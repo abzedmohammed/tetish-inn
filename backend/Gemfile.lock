@@ -140,8 +140,11 @@ GEM
       net-protocol
     netrc (0.11.0)
     nio4r (2.5.8)
-    nokogiri (1.14.0-x64-mingw32)
+    nokogiri (1.14.1-x64-mingw32)
       racc (~> 1.4)
+    nokogiri (1.14.1-x86_64-linux)
+      racc (~> 1.4)
+    pg (1.4.5)
     pg (1.4.5-x64-mingw32)
     puma (5.6.5)
       nio4r (~> 2.0)
@@ -180,6 +183,11 @@ GEM
     rake (13.0.6)
     reline (0.3.2)
       io-console (~> 0.5)
+    rest-client (2.1.0)
+      http-accept (>= 1.7.0, < 2.0)
+      http-cookie (>= 1.0.2, < 2.0)
+      mime-types (>= 1.16, < 4.0)
+      netrc (~> 0.8)
     rest-client (2.1.0-x64-mingw32)
       ffi (~> 1.9)
       http-accept (>= 1.7.0, < 2.0)
@@ -188,12 +196,13 @@ GEM
       netrc (~> 0.8)
     thor (1.2.1)
     timeout (0.3.1)
-    tzinfo (2.0.5)
+    tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     tzinfo-data (1.2022.7)
       tzinfo (>= 1.0.0)
     unf (0.1.4)
       unf_ext
+    unf_ext (0.0.8.2)
     unf_ext (0.0.8.2-x64-mingw32)
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
@@ -202,6 +211,7 @@ GEM
 
 PLATFORMS
   x64-mingw32
+  x86_64-linux-musl
 
 DEPENDENCIES
   active_model_serializers

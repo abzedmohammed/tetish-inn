@@ -13,5 +13,7 @@ development:
 
 production:
   <<: *default
-  url: 
+  host: <%= ENV['AWS_RDS_HOST'] %>
+  post: 5432
+  database: tetish_inn
   

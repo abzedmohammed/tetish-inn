@@ -3,6 +3,8 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 
 
+const url = process.env.REACT_APP_TETISH_INN_BACKEND_URL
+
 const initialState ={
     loading: false,
     orderSuccess: false,
@@ -14,23 +16,23 @@ const initialState ={
 }
 
 export const makeOrder = createAsyncThunk('orderSlice/makeOrder', data => {
-    return axios.post("http://localhost:3000/orders", data).then(res => res.data)
+    return axios.post(`${url}/orders`, data).then(res => res.data)
 })
 
 export const getUserOrders = createAsyncThunk('orderSlice/getUserOrders', data => {
-    return axios.post("http://localhost:3000/my-orders", data).then(res => res.data)
+    return axios.post(`${url}/my-orders`, data).then(res => res.data)
 })
 
 export const editOrder = createAsyncThunk('orderSlice/editOrder', (data) => {
-    return axios.patch(`http://localhost:3000/orders/${data.id}`, data).then(res => res.data)
+    return axios.patch(`${url}/orders/${data.id}`, data).then(res => res.data)
 })
 
 export const getSingleOrder = createAsyncThunk('orderSlice/getSingleOrder', (id) => {
-    return axios.get(`http://localhost:3000/orders/${id}`).then(res => res.data)
+    return axios.get(`${url}/orders/${id}`).then(res => res.data)
 })
 
 export const deleteOrder = createAsyncThunk('orderSlice/deleteOrder', id => {
-    return axios.delete(`http://localhost:3000/orders/${id}`).then(res => res.data)
+    return axios.delete(`${url}/orders/${id}`).then(res => res.data)
 })
 
 const orderSlice = createSlice({

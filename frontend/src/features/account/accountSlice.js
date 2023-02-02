@@ -1,6 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+const url = process.env.REACT_APP_TETISH_INN_BACKEND_URL
+
 const initialState = {
 	loading: false,
 	creditSuccess: false,
@@ -12,14 +14,14 @@ export const updateAccount = createAsyncThunk(
 	'accountSlice/updateAccount',
 	(data) => {
 		return axios
-			.patch(`http://localhost:3000/accounts/${data.user_id}`, data)
+			.patch(`${url}/accounts/${data.user_id}`, data)
 			.then((res) => res.data);
 	},
 );
 
 export const getAccount = createAsyncThunk('accountSlice/getAccount', (id) => {
 	return axios
-		.get(`http://localhost:3000/accounts/${id}`)
+		.get(`${url}/accounts/${id}`)
 		.then((res) => res.data);
 });
 

@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
+const url = process.env.REACT_APP_TETISH_INN_BACKEND_URL
+
 const cartItems = JSON.parse(localStorage.getItem('cart')) || []
 const total = localStorage.getItem('total') || 0
 
@@ -19,17 +21,17 @@ const initialState = {
 }
 
 export const fetchSnacks = createAsyncThunk('snacks/fetchSnacks', () => {
-    return axios.get("http://localhost:3000/snacks")
+    return axios.get(`${url}/snacks`)
     .then(res => res.data)
 })
 
 export const addSnack = createAsyncThunk('snacks/addSnack', (data) => {
-    return axios.post("http://localhost:3000/snacks", data)
+    return axios.post(`${url}/snacks`, data)
     .then(res => res.data)
 })
 
 export const fetchSnackById = createAsyncThunk('snacks/fetchSnackById', (id) => {
-    return axios.get(`http://localhost:3000/snacks/${id}`)
+    return axios.get(`${url}/snacks/${id}`)
     .then(res => res.data)
 })
 
