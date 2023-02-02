@@ -39,6 +39,7 @@ const orderSlice = createSlice({
     reducers: {
         reset: state => {
             state.orderSuccess = false;
+            state.orderDeleted = false;
         },
         incrementQuantity: (state, action) => {
             let index = state.userOrders.find(item => item.id === action.payload.id)

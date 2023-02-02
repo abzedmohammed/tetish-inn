@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { updateAccount } from "../../features/account/accountSlice";
-import { decrementQuantity, editOrder, getSingleOrder, incrementQuantity, reset } from "../../features/order/orderSlice";
+import { decrementQuantity, deleteOrder, editOrder, getSingleOrder, incrementQuantity, reset } from "../../features/order/orderSlice";
 
 export default function EditOrder(){
     const order = useSelector(state => state.order)
@@ -73,7 +73,18 @@ export default function EditOrder(){
 
     }
 
-    if (order.orderSuccess) {
+    async function deleteUserOrder(){
+        await dispatch(deleteOrder(recentOrder.id))
+        
+        let newAmount = (recentOrder.snack.price * recentOrder.quantity) + account.amount
+
+        await dispatch(updateAccount({
+            user_id: user.id,
+            amount: newAmount
+        }))
+    }
+
+    if (order.orderSuccess || order.orderDeleted) {
         return <Navigate replace={true} to="/dashboard" />
     }
 
@@ -123,7 +134,7 @@ export default function EditOrder(){
                         <br />
                         <div className="card-actions mt-4">
 
-                            <button className="text-white bg-amber-800 hover:border-2 hover:border-amber-800 hover:text-amber-900 hover:bg-transparent focus:ring-4 focus:outline-none focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Delete order</button>
+                            <button onClick={deleteUserOrder} className="text-white bg-amber-800 hover:border-2 hover:border-amber-800 hover:text-amber-900 hover:bg-transparent focus:ring-4 focus:outline-none focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Delete order</button>
                                 :
                             <button onClick={submitReOrder} className="text-amber-900 bg-amber-300 hover:bg-amber-800 hover:text-white focus:ring-4 focus:outline-none focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mt-4">Resubmit order</button>
                         </div>
