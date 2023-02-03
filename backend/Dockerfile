@@ -34,6 +34,8 @@ RUN gem install bundler:2.4.4
 
 RUN bundle install
 
+RUN rails db:create db:migrate
+
 ARG RAILS_ENV="production"
 # ARG NODE_ENV="production"
 # ENV RAILS_ENV="${RAILS_ENV}" \

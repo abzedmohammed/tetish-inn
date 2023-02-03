@@ -25,10 +25,16 @@ spec:
         version: v1
     spec:
       containers:
-      - image: abzed/tetish-inn-backend
+      - image: abzed/tetish-inn-backend:v2
         imagePullPolicy: IfNotPresent
         name: tetish-inn-backend
         env:
+          - name: RAILS_ENV
+            valueFrom:
+              secretKeyRef:
+                key: RAILS_ENV
+                name: tetish-inn-secret
+
           - name: DATABASE_PASSWORD
             valueFrom:
               secretKeyRef:
@@ -61,8 +67,8 @@ spec:
 
         resources:
           requests:
-            cpu: 250m
-            memory: 64Mi
+            cpu: 500m
+            memory: 128Mi
           limits:
             cpu: 500m
             memory: 128Mi
@@ -84,5 +90,5 @@ spec:
   selector:
     app: tetish-inn-backend
   sessionAffinity: None
-  type: NodePort
+  type: LoadBalancer
 
