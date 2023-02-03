@@ -67,11 +67,11 @@ spec:
 
         resources:
           requests:
-            cpu: 500m
-            memory: 128Mi
+            cpu: 700m
+            memory: 912Mi
           limits:
-            cpu: 500m
-            memory: 128Mi
+            cpu: 900m
+            memory: 1024Mi
 
       terminationGracePeriodSeconds: 5
 ---

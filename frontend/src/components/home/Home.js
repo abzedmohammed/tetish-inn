@@ -49,7 +49,7 @@ export default function Home() {
 									<div className='form-control'>
 										{user.error ? (
 											<span className='text-red-500 my-5'>
-												Error: {user.error}!
+												Error: Invalid username or password!
 											</span>
 										) : (
 											false

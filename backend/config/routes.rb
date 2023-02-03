@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :admins
   resources :users
 
+  root to: "home#index"
+
   post "/login", to: "sessions#create"
   post "/login/admin", to: "sessions#create_admin"
   # get "/me/admin", to: "admins#show"

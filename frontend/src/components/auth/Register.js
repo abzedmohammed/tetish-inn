@@ -64,7 +64,7 @@ export default function Register() {
 						</h1>
 
 						{user.error ? (
-							<span className='text-red-500 my-5'>Error: {user.error}!</span>
+							<span className='text-red-500 my-5'>Error: {user.error}! Try a different username or email.</span>
 						) : (
 							false
 						)}

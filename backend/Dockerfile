@@ -34,9 +34,21 @@ RUN gem install bundler:2.4.4
 
 RUN bundle install
 
-RUN rails db:create db:migrate
 
-ARG RAILS_ENV="production"
+ARG RAILS_ENV=
+ARG DATABASE_PASSWORD
+ARG CLOUD_NAME
+ARG CLOUD_API_KEY
+ARG CLOUD_API_SECRET
+ARG AWS_RDS_HOST
+
+ENV RAILS_ENV=="production"
+ENV DATABASE_PASSWORD="Abzedar2"
+ENV CLOUD_NAME="abzedmohammed"
+ENV CLOUD_API_KEY="547487439672462"
+ENV CLOUD_API_SECRET="MQ9WO7z05ZviQeX5ijFDk7WNevI"
+ENV AWS_RDS_HOST="tetish-inn.ceqchdg3dyh6.us-east-1.rds.amazonaws.com"
+
 # ARG NODE_ENV="production"
 # ENV RAILS_ENV="${RAILS_ENV}" \
 #     NODE_ENV="${NODE_ENV}" \
@@ -48,7 +60,7 @@ COPY . .
 
 EXPOSE 3000
 
-CMD ["rails", "server", "-b", "0.0.0.0"]
+CMD ["rails", "server", "-b" "0.0.0.0"]
 
 
 # bundle lock --add-platform x86_64-linux-musl
