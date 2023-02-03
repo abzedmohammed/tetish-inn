@@ -16,4 +16,10 @@ spec:
             name: tetish-inn-backend
             port: 
               number: 3000
-
+      - pathType: Prefix
+        path: "/users"
+        backend:
+          service:
+            name: tetish-inn-backend
+            port: 
+              number: 3000

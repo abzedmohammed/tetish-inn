@@ -25,53 +25,53 @@ spec:
         version: v1
     spec:
       containers:
-      - image: abzed/tetish-inn-backend:v2
+      - image: abzed/tetish-inn-backend:v5
         imagePullPolicy: IfNotPresent
         name: tetish-inn-backend
         env:
           - name: RAILS_ENV
             valueFrom:
-              secretKeyRef:
+              configMapKeyRef:
                 key: RAILS_ENV
-                name: tetish-inn-secret
+                name: tetish-inn-config
 
           - name: DATABASE_PASSWORD
             valueFrom:
-              secretKeyRef:
+              configMapKeyRef:
                 key: DATABASE_PASSWORD
-                name: tetish-inn-secret
+                name: tetish-inn-config
 
           - name: CLOUD_NAME
             valueFrom:
-              secretKeyRef:
+              configMapKeyRef:
                 key: CLOUD_NAME
-                name: tetish-inn-secret
+                name: tetish-inn-config
 
           - name: CLOUD_API_KEY
             valueFrom:
-              secretKeyRef:
+              configMapKeyRef:
                 key: CLOUD_API_KEY
-                name: tetish-inn-secret
+                name: tetish-inn-config
 
           - name: CLOUD_API_SECRET
             valueFrom:
-              secretKeyRef:
+              configMapKeyRef:
                 key: CLOUD_API_SECRET
-                name: tetish-inn-secret
+                name: tetish-inn-config
 
           - name: AWS_RDS_HOST
             valueFrom:
-              secretKeyRef:
+              configMapKeyRef:
                 key: AWS_RDS_HOST
-                name: tetish-inn-secret
+                name: tetish-inn-config
 
         resources:
           requests:
-            cpu: 700m
-            memory: 912Mi
+            cpu: 100m
+            memory: 112Mi
           limits:
-            cpu: 900m
-            memory: 1024Mi
+            cpu: 200m
+            memory: 224Mi
 
       terminationGracePeriodSeconds: 5
 ---
@@ -90,5 +90,5 @@ spec:
   selector:
     app: tetish-inn-backend
   sessionAffinity: None
-  type: LoadBalancer
+  type: NodePort
 

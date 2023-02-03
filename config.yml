@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tetish-inn-config
+  namespace: default
+data:
+  RAILS_ENV: production
+  DATABASE_PASSWORD: Abzedar2
+  CLOUD_NAME: abzedmohammed
+  CLOUD_API_KEY: '547487439672462'
+  CLOUD_API_SECRET: MQ9WO7z05ZviQeX5ijFDk7WNevI
+  AWS_RDS_HOST: tetish-inn.ceqchdg3dyh6.us-east-1.rds.amazonaws.com
+
+

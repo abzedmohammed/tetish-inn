@@ -42,7 +42,7 @@ ARG CLOUD_API_KEY
 ARG CLOUD_API_SECRET
 ARG AWS_RDS_HOST
 
-ENV RAILS_ENV=="production"
+ENV RAILS_ENV="production"
 ENV DATABASE_PASSWORD="Abzedar2"
 ENV CLOUD_NAME="abzedmohammed"
 ENV CLOUD_API_KEY="547487439672462"
@@ -60,7 +60,7 @@ COPY . .
 
 EXPOSE 3000
 
-CMD ["rails", "server", "-b" "0.0.0.0"]
+CMD ["rails", "server", "-b", "0.0.0.0"]
 
 
 # bundle lock --add-platform x86_64-linux-musl
