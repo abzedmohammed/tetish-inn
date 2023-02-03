@@ -3,7 +3,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 
 
-const url = process.env.REACT_APP_TETISH_INN_BACKEND_URL
+const url = 'http://34.95.127.87';
 
 const initialState ={
     loading: false,
