@@ -90,5 +90,5 @@ spec:
   selector:
     app: tetish-inn-backend
   sessionAffinity: None
-  type: NodePort
+  type: LoadBalancer
 
