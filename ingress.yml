@@ -1,21 +1,45 @@
+# kubectl create secret tls tls-secret --key ca.key --cert ca.crt
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: tetish-inn-ingress
+#   annotations:
+#     nginx.ingress.kubernetes.io/rewrite-target: /
+#     # kubernetes.io/ingress.class: gce
+#     # kubernetes.io/ingress.allow-http: "false"
+#     # networking.gke.io/v1beta1.FrontendConfig: redirect-config
+
+# spec:
+#   tls:
+#   - hosts:
+#       - https-tetish.inn.com
+#     secretName: secret-tls
+#   rules:
+#   - host: https-tetish.inn.com
+#   - http:
+#       paths:
+#       - pathType: Prefix
+#         path: "/"
+#         backend:
+#           service:
+#             name: tetish-inn-backend
+#             port: 
+#               number: 3000
+
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: tetish-inn-ingress
   annotations:
-    # nginx.ingress.kubernetes.io/rewrite-target: /
-    kubernetes.io/ingress.class: gce
-    kubernetes.io/ingress.allow-http: "false"
-    networking.gke.io/v1beta1.FrontendConfig: redirect-config
-
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - http:
-      paths:
-      - pathType: Prefix
-        path: "/"
-        backend:
-          service:
-            name: tetish-inn-backend
-            port: 
-              number: 3000
+    - http:
+        paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: tetish-inn-backend
+              port:
+                number: 3000

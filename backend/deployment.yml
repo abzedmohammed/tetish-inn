@@ -87,8 +87,16 @@ spec:
   - port: 3000
     protocol: TCP
     targetPort: 3000
+    # - name: http
+    #   protocol: TCP
+    #   port: 80
+    #   targetPort: 9376
+    # - name: https
+    #   protocol: TCP
+    #   port: 443
+    #   targetPort: 9377
   selector:
     app: tetish-inn-backend
   sessionAffinity: None
-  type: LoadBalancer
+  type: NodePort
 

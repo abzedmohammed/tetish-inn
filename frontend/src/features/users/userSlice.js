@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const url = 'http://34.95.127.87';
+const url = process.env.REACT_APP_TETISH_INN_BACKEND_URL
 
 const initialState = {
     user: {},
