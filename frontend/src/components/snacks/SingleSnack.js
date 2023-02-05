@@ -34,10 +34,7 @@ export default function SingleSnack(){
 
                         <h2 className="text-xl text-amber-600 border-b-2 border-amber-400">Flavours</h2>
                         <ul className="p-3">
-                            <li className="text-lg font-semibold text-amber-900">{snack.flavors}</li>
-                            <li className="text-lg font-semibold text-amber-900">Herbanero</li>
-                            <li className="text-lg font-semibold text-amber-900">Honey</li>
-                            <li className="text-lg font-semibold text-amber-900">Mayonnaise</li>                           
+                            <li className="text-lg font-semibold text-amber-900 w-64">{snack.flavors}</li>                         
                         </ul>
                         <hr className="border border-amber-400" />
 
