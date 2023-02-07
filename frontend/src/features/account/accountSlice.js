@@ -8,6 +8,7 @@ const initialState = {
 	creditSuccess: false,
 	error: '',
 	amount: 0,
+	updateSuccess: false,
 };
 
 export const updateAccount = createAsyncThunk(
@@ -31,6 +32,10 @@ const accountSlice = createSlice({
 	reducers: {
 		cleanUpAccount: state => {
 			state.creditSuccess = false;
+			state.updateSuccess = false;
+		},
+		cleanAccountUpdate: state => {
+			state.updateSuccess = true;
 		}
 	},
 	extraReducers: (builder) => {
@@ -56,4 +61,4 @@ const accountSlice = createSlice({
 });
 
 export default accountSlice.reducer;
-export const { cleanUpAccount } = accountSlice.actions
+export const { cleanUpAccount, cleanAccountUpdate } = accountSlice.actions

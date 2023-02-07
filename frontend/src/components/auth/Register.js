@@ -63,8 +63,29 @@ export default function Register() {
 							Cutomer
 						</h1>
 
-						{user.error ? (
-							<span className='text-red-500 my-5'>Error: {user.error}! Try a different username or email.</span>
+						{Object.keys(user.registerError).length > 0 ? (
+							<div className='flex flex-col my-5'>
+								{
+									user.registerError.username &&
+									<span className='text-red-500'>Username {user.registerError.username}!</span>
+								}
+
+{
+									user.registerError.email &&
+									<span className='text-red-500'>Email {user.registerError.email}!</span>
+								}
+
+{
+									user.registerError.password &&
+									<span className='text-red-500'>Password {user.registerError.password}!</span>
+								}
+
+{
+									user.registerError.password_confirmation &&
+									<span className='text-red-500'>Password Confirm {user.registerError.password_confirmation}!</span>
+								}
+								
+							</div>
 						) : (
 							false
 						)}
@@ -112,8 +133,8 @@ export default function Register() {
 									>
 										Upload profile image
 									</label>
-									<input onChange={handleChange}
-										type='file' name='avatar' 
+									<input onChange={handleChange} required
+										type='file' name='avatar' accept="image/png, image/jpeg, image/jpg"  
 										className='file-input file-input-bordered border-2 file-input-warning max-w-xs w-full md:w-5/6'
 									/>
 								</div>

@@ -47,9 +47,9 @@ export default function Home() {
 							<div className='card-body'>
 								<form onSubmit={handleSubmit(onSubmit)}>
 									<div className='form-control'>
-										{user.error ? (
+										{user.loginError ? (
 											<span className='text-red-500 my-5'>
-												Error: Invalid username or password!
+												{user.loginError}
 											</span>
 										) : (
 											false

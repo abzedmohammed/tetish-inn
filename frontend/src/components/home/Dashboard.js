@@ -71,11 +71,11 @@ export default function Dashboard() {
 		<>
 			<div className='p-5 md:container md:mx-auto mb-14'>
 				<div className='card p-5 md:p-24 border-b-8 border-r-4 shadow-md shadow-amber-500 border-amber-800'>
-					<h1 className='text-8xl text-amber-800'>
+					<h1 className='text-8xl text-amber-800 truncate'>
 						<span className='uppercase '>
 							<span className='md:hidden block capitalize'>Hi...</span>
 							{user.user.username}<span className='hidden md:lowercase md:inline'>'s</span>{' '}
-							<span className='hidden md:inline'>Dashboard</span>
+							<span className='hidden float-right md:inline'>Dashboard</span>
 						</span>
 					</h1>
 				</div>

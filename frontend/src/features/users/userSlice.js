@@ -6,9 +6,14 @@ const url = process.env.REACT_APP_TETISH_INN_BACKEND_URL
 const initialState = {
     user: {},
     loading: false,
-    error: '',
+    loginError: '',
+    registerError: {},
     isLoggedIn: false,
 }
+
+let errorMessage;
+
+let registerErrObj = {}
 
 export const loginAdminUser = createAsyncThunk('userSlice/loginAdminUser', data => {
     return axios.post(`${url}/login/admin`, data)
@@ -17,11 +22,19 @@ export const loginAdminUser = createAsyncThunk('userSlice/loginAdminUser', data 
 
 export const loginUser = createAsyncThunk('userSlice/loginUser', data => {
     return axios.post(`${url}/login`, data)
+        .catch(er => {
+            if (er.response) {
+                errorMessage = er.response.data.error
+            }
+        })
         .then(res => res.data)
 })
 
 export const registerUser = createAsyncThunk('userSlice/registerUser', data => {
     return axios.post(`${url}/users`, data)
+        .catch(er => {
+            registerErrObj = er.response.data.error
+        })
         .then(res => res.data)
 })
 
@@ -60,14 +73,14 @@ const userSlice = createSlice({
             state.loading = false
             state.user = action.payload
             state.isLoggedIn = true
-            state.error = ''
+            state.loginError = ''
             sessionStorage.setItem('user_id', JSON.stringify(action.payload.id))
         })
         builder.addCase(loginUser.rejected, (state, action) => {
             state.loading = false
             state.user = {}
             state.isLoggedIn = false
-            state.error = action.error.message
+            state.loginError = errorMessage
         })
 
 
@@ -94,13 +107,13 @@ const userSlice = createSlice({
         })
         builder.addCase(registerUser.fulfilled, (state, action) => {
             state.isLoggedIn = false
-            state.error = ''
+            state.RegisterError = {}
         })
         builder.addCase(registerUser.rejected, (state, action) => {
             state.loading = false
             state.user = {}
             state.isLoggedIn = false
-            state.error = action.error.message
+            state.registerError = registerErrObj
         })
 
 

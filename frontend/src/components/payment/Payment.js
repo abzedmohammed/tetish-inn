@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateAccount } from '../../features/account/accountSlice';
+import { cleanAccountUpdate, updateAccount } from '../../features/account/accountSlice';
 
 const schema = yup
 	.object({
@@ -22,12 +22,13 @@ export default function Payment(){
 
     const onSubmit = (data) => creditAccount(data);
 
-    function creditAccount(data){
+    async function creditAccount(data){
         let newAmount = account.amount + data.amount
-        dispatch(updateAccount({
+        await dispatch(updateAccount({
             user_id: user.id,
             amount: newAmount
         }))
+        dispatch(cleanAccountUpdate())
     }
 
     return (
@@ -42,7 +43,7 @@ export default function Payment(){
                     }
 
                     {
-                        account.creditSuccess && 
+                        account.updateSuccess && 
 
                         <div className="flex flex-row mx-auto items-center mt-5">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" 
@@ -62,7 +63,7 @@ export default function Payment(){
 
                         <div>
                             {
-                                account.creditSuccess ?
+                                account.updateSuccess ?
 
                                 <label htmlFor='my-modal-4' className="btn btn-sm bg-amber-500 text-white hover:bg-amber-700 hover:text-white">Close</label>
                                 :
