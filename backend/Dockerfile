@@ -7,7 +7,7 @@ WORKDIR /app
 
 COPY Gemfile Gemfile.lock ./
 
-RUN apk add --update \
+RUN apk add \
       binutils-gold \
       build-base \
       curl \

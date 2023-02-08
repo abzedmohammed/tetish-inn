@@ -55,7 +55,7 @@ export default function Home() {
 											false
 										)}
 										<label className='label'>
-											<span className='label-text'>Username</span>
+											<span className='label-text text-lg font-medium text-amber-800'>Username</span>
 										</label>
 										<input
 											{...register('username')}
@@ -66,7 +66,7 @@ export default function Home() {
 									</div>
 									<div className='form-control'>
 										<label className='label'>
-											<span className='label-text'>Password</span>
+											<span className='label-text text-lg font-medium text-amber-800'>Password</span>
 										</label>
 										<input
 											{...register('password')}

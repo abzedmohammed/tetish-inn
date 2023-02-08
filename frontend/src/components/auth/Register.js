@@ -60,7 +60,7 @@ export default function Register() {
 					<form onSubmit={handleSubmit(onSubmit)}>
 						<h1 className='mb-5 text-4xl font-bold text-amber-700'>
 							<span className='border-b-4 border-amber-400 text-amber-900'>Hello</span> Esteemed
-							Cutomer
+							Customer
 						</h1>
 
 						{Object.keys(user.registerError).length > 0 ? (
@@ -95,7 +95,7 @@ export default function Register() {
 								<div className='mb-6'>
 									<label
 										htmlFor='username'
-										className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
+										className='block mb-2 text-lg font-medium text-amber-800 dark:text-white'
 									>
 										Username
 									</label>
@@ -112,7 +112,7 @@ export default function Register() {
 								<div className='mb-6'>
 									<label
 										htmlFor='email'
-										className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
+										className='block mb-2 text-lg font-medium text-amber-800 dark:text-white'
 									>
 										Email
 									</label>
@@ -129,7 +129,7 @@ export default function Register() {
 								<div className='mb-6'>
 									<label
 										htmlFor='avatar'
-										className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
+										className='block mb-2 text-lg font-medium text-amber-800 dark:text-white'
 									>
 										Upload profile image
 									</label>
@@ -144,7 +144,7 @@ export default function Register() {
 								<div className='mb-6'>
 									<label
 										htmlFor='password'
-										className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
+										className='block mb-2 text-lg font-medium text-amber-800 dark:text-white'
 									>
 										Password
 									</label>
@@ -160,7 +160,7 @@ export default function Register() {
 								<div className='mb-6'>
 									<label
 										htmlFor='password_confirmation'
-										className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
+										className='block mb-2 text-lg font-medium text-amber-800 dark:text-white'
 									>
 										Confirm password
 									</label>
