@@ -46,8 +46,7 @@ export default function Nav(){
                 </ul>
             </div>
             <div className="navbar-end">
-            {
-                user.isLoggedIn ? 
+                
                     <div className="flex-none">
                         <div className="dropdown dropdown-end">
                         <label tabIndex={0} className="btn btn-ghost btn-circle hover:bg-amber-200">
@@ -66,6 +65,9 @@ export default function Nav(){
                             </div>
                         </div>
                         </div>
+
+                        { user.isLoggedIn ? 
+                        
                         <div className="dropdown dropdown-end mx-2">
                         <label tabIndex={0} className="btn btn-ghost btn-circle avatar hover:bg-amber-200">
                             <div className="w-12 rounded-full">
@@ -81,10 +83,11 @@ export default function Nav(){
                             <li><a className="font-semibold text-amber-900 hover:bg-amber-200 hover:font-extrabold" onClick={() => dispatch(logout())}>Logout</a></li>
                         </ul>
                     </div>
+                    : 
+                    null
+                }
                 </div>
-            : 
-                null
-            }
+            
             </div>
             </div>
         </>

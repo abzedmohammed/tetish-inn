@@ -36,10 +36,13 @@ function App() {
     <Routes>
       <Route exact path="/" element={<Home />} />
       <Route exact path="/snacks" element={<Snacks />} />
+      <Route exact path="/snacks/:id/:name" element={<SingleSnack />} />
+      <Route exact path="/orders/confirm" element={<Confrim />} />
       <Route exact path="/login" element={<Home />} />
       <Route exact path="/admin/login" element={<AdminLogin />} />
       <Route exact path="/avatar" element={<ImageUploadForm />} />
       <Route exact path="/register" element={<Register />} />
+      <Route exact path="/cart" element={<CartList />} />
       <Route path='*' element={<Navigate to="/" />}/>
     </Routes>
   )

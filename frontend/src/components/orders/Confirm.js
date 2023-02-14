@@ -9,7 +9,7 @@ import { emptyCart } from "../../features/snacks/snackSlice";
 export default function Confrim(){
     const order = useSelector(state => state.order)
     const snacks = useSelector(state => state.snacks)
-    const user = useSelector(state => state.user.user)
+    const user = useSelector(state => state.user)
     const account = useSelector(state => state.account)
     const dispatch = useDispatch()
 
@@ -27,7 +27,7 @@ export default function Confrim(){
     async function submitOrder(){
         await snacks.cart.forEach(item => {
             dispatch(makeOrder({
-                user_id: user.id,
+                user_id: user.user.id,
                 snack_id: item.id,
                 quantity: item.quantity
             }))
@@ -36,7 +36,7 @@ export default function Confrim(){
         let newAmount = account.amount - snacks.totalPrice
 
         await dispatch(updateAccount({
-            user_id: user.id,
+            user_id: user.user.id,
             amount: newAmount
         }))
 
@@ -69,8 +69,17 @@ export default function Confrim(){
             <div className="container mx-auto mb-12 flex justify-center items-center flex-col mt-20">
                 <div className="card shadow-lg shadow-amber-400 w-fit p-5">
 
+                {
+                        !user.isLoggedIn && 
+                        <>
+                        <p className="my-6 text-amber-800 text-2xl text-center w-fit">Cannot proceed without logging in!</p>
+                        <Link to="/login" className="btn text-center mb-4  text-amber-900 bg-amber-400 hover:bg-amber-700 hover:text-white btn-sm">Login</Link>
+                        <Link to="/snacks" className="btn text-center text-amber-900 bg-amber-400 hover:bg-amber-700 hover:text-white btn-sm">Back to snacks</Link>
+                        </>
+                    }
+
                     {
-                        message !== '' ? 
+                        user.isLoggedIn && message !== '' ? 
                         <>
                         <p className="my-6 text-amber-800 text-2xl text-center">Oops Sorry! {message}</p>
                         <Link to="/cart" className="btn text-center text-amber-900 bg-amber-400 hover:bg-amber-700 hover:text-white btn-sm">Edit Cart</Link>
@@ -80,7 +89,7 @@ export default function Confrim(){
                     }
 
                     {
-                        order.error && 
+                        user.isLoggedIn && order.error && 
                         <>
                         <p className="my-6 text-amber-800 text-2xl text-center">Error! {order.error}</p>
                         <Link to="/snacks" className="btn text-center text-amber-900 bg-amber-400 hover:bg-amber-700 hover:text-white btn-sm">Back to snacks page</Link>
@@ -88,7 +97,7 @@ export default function Confrim(){
                     }
 
                     {
-                        !order.orderSuccess && !order.error && !order.loading && snacks.cart.length && !message &&
+                        user.isLoggedIn &&  !order.orderSuccess && !order.error && !order.loading && snacks.cart.length && !message &&
                         <>
                             <h1 className="text-center text-3xl font-bold text-amber-700 underline">CONFIRM YOUR ORDER</h1>
                             <p className="mt-4 text-amber-800 text-sm">By clicking confirm you agree to the price below being deducted from you account!</p>
@@ -120,7 +129,7 @@ export default function Confrim(){
                         </>
                     }
                     {
-                        order.payed && snacks.totalPrice === 0 ?
+                        user.isLoggedIn && order.payed && snacks.totalPrice === 0 ?
                         
                         <>
                         <div className="flex justify-center flex-col mx-auto">
