@@ -36,7 +36,7 @@ export default function Snacks(){
     return(
         <>
     <div className="container-fluid mx-10 mt-6 mb-14">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
             
             {
                 snacks.loading ?
@@ -171,7 +171,7 @@ export default function Snacks(){
 
             }
 
-            <div className="hidden md:inline md:fixed md:right-20 md:w-96">
+            <div className="hidden xl:inline xl:fixed xl:right-20 xl:w-96">
                 <h3 className="text-2xl text-amber-900 border-b-4 font-semibold border-amber-400 text-left w-fit">Cart Item(s)</h3>
                 <Checkout />
             </div>

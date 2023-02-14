@@ -19,6 +19,7 @@ import Confrim from './components/orders/Confirm';
 import OrderHistory from './components/orders/OrderHistory';
 import EditOrder from './components/orders/EditOrder';
 import ImageUploadForm from './components/Avatar';
+import ErrorPage from './404';
 
 function App() {
   const user = useSelector(state => state.user)
@@ -34,7 +35,7 @@ function App() {
 
   let loginRoutes = (
     <Routes>
-      <Route exact path="/" element={<Home />} />
+      <Route exact path="/" element={<Snacks />} />
       <Route exact path="/snacks" element={<Snacks />} />
       <Route exact path="/snacks/:id/:name" element={<SingleSnack />} />
       <Route exact path="/orders/confirm" element={<Confrim />} />
@@ -43,7 +44,7 @@ function App() {
       <Route exact path="/avatar" element={<ImageUploadForm />} />
       <Route exact path="/register" element={<Register />} />
       <Route exact path="/cart" element={<CartList />} />
-      <Route path='*' element={<Navigate to="/" />}/>
+      <Route path='*' element={<ErrorPage />}/>
     </Routes>
   )
 
@@ -60,6 +61,10 @@ function App() {
           <Route exact path="/admin" element={<Admin />} />
           <Route exact path="/admin/orders" element={<Orders />} />
           <Route exact path="/admin/menu" element={<MealList />} />
+          <Route exact path="/" element={<Snacks />} />
+          <Route path='*' element={<ErrorPage />}/>
+          <Route path='/login' element={<Navigate to="/" />}/>
+          <Route path='/register' element={<Navigate to="/" />}/>
          
           {
             user.user.is_admin ?

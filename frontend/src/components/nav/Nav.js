@@ -84,7 +84,15 @@ export default function Nav(){
                         </ul>
                     </div>
                     : 
-                    null
+                    <div className="hidden lg:dropdown lg:dropdown-end lg:mx-2">
+                    <ul className="flex flex-row items-center">
+                        <li><Link 
+                        className="mx-2 p-3 rounded-lg font-bold text-lg text-amber-900 hover:bg-amber-200" to="/login">Login
+                        </Link></li>
+                        <li><Link className="mx-2 p-3 rounded-lg font-bold text-lg text-amber-900 hover:bg-amber-200" to="/register">Register</Link></li>
+
+                    </ul>
+                    </div>
                 }
                 </div>
             
