@@ -24,3 +24,5 @@
 .env
 
 secret-config.yml
+
+Dockerfile
